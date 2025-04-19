@@ -75,3 +75,52 @@ class Pet:
                 f"Hunger: {self.hunger}/10 | Energy: {self.energy}/10 | "
                 f"Happiness: {self.happiness}/10 | Health: {self.health}/10\n"
                 f"Mood: {self.mood()}")
+
+
+            def eat(self):
+        self.hunger -= 3
+        if self.hunger < 0:
+            self.hunger = 0
+        self.happiness += 1
+        if self.happiness > 10:
+            self.happiness = 10
+        print(f"{self.name} eats and looks happy!")
+
+    def sleep(self):
+        self.energy += 5
+        if self.energy > 10:
+            self.energy = 10
+        print(f"{self.name} curls up and takes a nap.")
+
+    def play(self):
+        if self.energy >= 2:
+            self.energy -= 2
+            self.happiness += 2
+            if self.happiness > 10:
+                self.happiness = 10
+            self.hunger += 1
+            if self.hunger > 10:
+                self.hunger = 10
+            print(f"{self.name} plays around excitedly!")
+        else:
+            print(f"{self.name} is too tired to play.")
+
+    def get_status(self):
+        print(f"--- {self.name}'s Status ---")
+        print(f"Hunger: {self.hunger}/10")
+        print(f"Energy: {self.energy}/10")
+        print(f"Happiness: {self.happiness}/10")
+
+    def train(self, trick):
+        if not hasattr(self, 'tricks'):
+            self.tricks = []
+        self.tricks.append(trick)
+        print(f"{self.name} learned a new trick: {trick}!")
+
+    def show_tricks(self):
+        if hasattr(self, 'tricks') and self.tricks:
+            print(f"{self.name} knows the following tricks:")
+            for trick in self.tricks:
+                print(f"- {trick}")
+        else:
+            print(f"{self.name} hasn't learned any tricks yet.")
